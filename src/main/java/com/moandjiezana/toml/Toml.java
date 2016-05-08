@@ -40,11 +40,13 @@ import com.google.gson.JsonElement;
  *
  */
 public class Toml {
-  
-  private static final Gson DEFAULT_GSON = new Gson();
 
   private Map<String, Object> values = new HashMap<String, Object>();
   private final Toml defaults;
+
+  public Map<String, Object> getKeyValues() {
+    return new HashMap<String, Object>(values);
+  }
 
   /**
    * Creates Toml instance with no defaults.
@@ -311,7 +313,8 @@ public class Toml {
         }
       }
     }
-    
+    Gson DEFAULT_GSON = new Gson();
+
     JsonElement json = DEFAULT_GSON.toJsonTree(valuesCopy);
     
     if (targetClass == JsonElement.class) {
